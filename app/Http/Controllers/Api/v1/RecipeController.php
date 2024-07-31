@@ -49,7 +49,13 @@ class RecipeController extends Controller
             );
         }
 
-        $recipe = $this->recipeService->create($request->validated());
+        $validated = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        $recipe = $this->recipeService->create($validated);
 
         return new JsonResponse(
           new RecipeResource($recipe), Response::HTTP_CREATED
@@ -79,7 +85,13 @@ class RecipeController extends Controller
             );
         }
 
-        $recipe = $this->recipeService->update($request->validated(), $recipe->id);
+        $validated = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        $recipe = $this->recipeService->update($validated, $recipe->id);
 
         return new JsonResponse(
           new RecipeResource($recipe), Response::HTTP_OK

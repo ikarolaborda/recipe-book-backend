@@ -27,7 +27,7 @@ class RecipeUpdateRequest extends FormRequest
             'ingredients' => 'sometimes|string',
             'instructions' => 'sometimes|string',
             'cuisine_type' => 'sometimes|string',
-            'image' => 'sometimes|image|max:2048'
+            'image' => 'sometimes|image|max:1024'
         ];
     }
 }

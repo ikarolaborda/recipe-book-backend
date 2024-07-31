@@ -27,6 +27,7 @@ class RecipeStoreRequest extends FormRequest
             'ingredients' => 'required|min:10',
             'instructions' => 'required|min:10',
             'cuisine_type' => 'required|min:3',
+            'image' => 'sometimes|image|max:1024' // 1MB max size
         ];
     }
 }
